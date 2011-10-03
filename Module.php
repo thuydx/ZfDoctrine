@@ -2,7 +2,8 @@
 
 namespace ZfDoctrine;
 
-use Zend\Module\Manager;
+use Zend\Module\Manager,
+    Doctrine\ORM\Tools\Setup as DoctrineSetup;
 
 class Module
 {
@@ -14,6 +15,6 @@ class Module
     public function initAutoloader()
     {
         require __DIR__ . '/vendor/doctrine2/lib/Doctrine/ORM/Tools/Setup.php';
-        \Doctrine\ORM\Tools\Setup::registerAutoloadGit(__DIR__ . '/vendor/doctrine2');
+        DoctrineSetup::registerAutoloadGit(__DIR__ . '/vendor/doctrine2');
     }
 }

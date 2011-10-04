@@ -9,10 +9,13 @@ use PDO,
 
 class EntityManagerFactory
 {
-    public static function createFromPdo(PDO $pdo)
+    public static function createFromPdo($pdo)
     {
+        if (!$pdo instanceof PDO) {
+            throw new \InvalidArgumentException('You must inject a configured PDO object via the "doctrine-pdo" DI alias.');
+        }
         $isDevMode = true;
-        $config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
+        $config = Setup::createXMLMetadataConfiguration(array(), $isDevMode);
         $conn = array('pdo' => $pdo);
         $em = EntityManager::create($conn, $config);
         return $em;

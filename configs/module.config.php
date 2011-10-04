@@ -1,11 +1,4 @@
 <?php
-$pdoOptions = array(
-    'dsn'            => 'mysql:dbname=changeme;host=changeme',
-    'username'       => 'changeme',
-    'passwd'         => 'changeme',
-    'driver_options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''),
-);
-
 return array(
     'di' => array( 
         'definitions' => array(
@@ -27,12 +20,9 @@ return array(
             ),
         ),
         'instance' => array(
-            'PDO' => array(
-                'parameters' => $pdoOptions,
-            ),
             'ZfDoctrine\EntityManagerFactory' => array(
                 'parameters' => array(
-                    'pdo' => 'PDO',
+                    'pdo' => 'doctrine-pdo',
                 ),
             ),
         ),
